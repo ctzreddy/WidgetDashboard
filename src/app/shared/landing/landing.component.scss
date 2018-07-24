@@ -1,0 +1,26 @@
+:host {
+	width: 100%;
+	&.loading{
+		min-height: 300px;
+		background: transparent url('/assets/images/spinner.gif') no-repeat 50% 50%;
+	}
+    .landing-page {
+		display: flex;
+		flex-wrap: wrap;
+		padding:10px;
+	}
+    .box {
+		margin: 10px;
+		border:1px solid #ccc;
+		border-radius: 10px;
+		width: calc(33.3333333% - 20px);
+		.fa {
+			margin-right: 10px
+		}
+		h3 {
+			padding: 10px 20px;
+			font-size: 16px;
+			border-bottom: 1px solid #ccc;
+		}
+	}
+}
