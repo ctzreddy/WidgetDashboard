@@ -10,6 +10,7 @@ import { UserService } from './../../services/index';
 })
 export class LandingComponent implements OnInit {
 	@HostBinding('class.loading') loading = true;
+	
 
 	constructor(
 		private router: Router,
