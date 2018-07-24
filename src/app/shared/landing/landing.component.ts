@@ -8,7 +8,7 @@ import { UserService } from './../../services/index';
 	templateUrl: './landing.component.html',
 	styleUrls: ['./landing.component.scss']
 })
-export class LandingComponent {
+export class LandingComponent implements OnInit {
 	@HostBinding('class.loading') loading = true;
 
 	constructor(
@@ -17,28 +17,29 @@ export class LandingComponent {
 	) { }
 
 	ngOnInit() {
-		if (!this.userService.currentUser()) {
+		if (!this.userService.getCurrentUser()) {
 			this.doWinAuthCheck();
 		} else {
-			this.userService.loadUserPermissions();
+
+			// this.userService.loadUserPermissions();
 		}
 
+	}
+
+	doWinAuthCheck() {
+		this.userService.winAuthUser()
+			.subscribe(data => {
+				this.userService.setUserInfo(data);
+			},
+				(error) => {
+					this.router.navigateByUrl('/login');
+				});
 	}
 
 	// ngOnDestroy() {
 	// 	if (this.permissionSubscription) {
 	// 		this.permissionSubscription.unsubscribe();
 	// 	}
-	// }
-
-	// doWinAuthCheck() {
-	// 	this.userService.winAuthUser()
-	// 		.subscribe(data => {
-	// 			this.userService.updateUserInfo(data);
-	// 		},
-	// 			(error) => {
-	// 				this.router.navigateByUrl('/login');
-	// 			});
 	// }
 
 }
